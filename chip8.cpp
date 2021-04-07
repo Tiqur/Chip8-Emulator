@@ -45,6 +45,7 @@ class CPU
     unsigned short PC;          // 16-bit Program counter ( Points to the current instruction address )
     bool DISPLAY[2048];         // Represents pixels ( on / off )
 
+    // Initialize / reset values 
     void initialize()
     {
       
@@ -66,9 +67,15 @@ class CPU
       // Clear Registers
       memset(V, 0, sizeof(V));
 
-      // Load fontset into memory
+      // Load fontset into memor
       for (int i = 0; i < 80; i++)
         this->MEMORY[i+0x50] = fontset[i];
+    }
+
+    // Clear display ( 00E0 )
+    void clearDisplay()
+    {
+      memset(DISPLAY, 0, sizeof(DISPLAY));
     }
 };
 
