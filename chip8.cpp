@@ -29,10 +29,10 @@ class CPU
     unsigned char MEMORY[4096]; // Memory ( holds a total of 4096 bytes )
     unsigned char STACK[16];    // Stack ( holds 16 bytes )
     unsigned char V[16];        // Registers ( holds one byte each )
-    unsigned char PC;           // Program counter ( Points to the current instruction address )
     unsigned char DT;           // 8-bit delay timer
     unsigned char ST;           // 8-bit sound timer
     unsigned short I;           // 16-bit Index register ( indexes the stack )
+    unsigned short PC;          // 16-bit Program counter ( Points to the current instruction address )
     bool DISPLAY[2048];         // Represents pixels ( on / off )
 
     void initialize()
