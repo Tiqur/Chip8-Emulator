@@ -1,5 +1,7 @@
 #include "iostream"
 #include "cstring"
+#include "random"
+
 
 // Fontset
 unsigned char fontset[80] =
@@ -22,6 +24,14 @@ unsigned char fontset[80] =
   0xF0, 0x80, 0xF0, 0x80, 0x80  // F
 };
 
+unsigned char randomByte()
+{
+  std::random_device RD;
+  std::mt19937 gen(RD());
+  std::uniform_int_distribution<> distr(0, 255U);
+
+  return distr(gen);
+}
 
 class CPU
 {
@@ -39,7 +49,7 @@ class CPU
     {
       
       // Reset Values
-      this->PC = 0;
+      this->PC = 0x200;
       this->DT = 0;
       this->ST = 0;
       this->I  = 0;
@@ -56,7 +66,7 @@ class CPU
       // Clear Registers
       memset(V, 0, sizeof(V));
 
-      // Load fontset 
+      // Load fontset into memory
       for (int i = 0; i < 80; i++)
         this->MEMORY[i+0x50] = fontset[i];
     }
